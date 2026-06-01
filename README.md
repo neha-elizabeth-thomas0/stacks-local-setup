@@ -18,21 +18,6 @@ This automation script streamlines the process of setting up Terraform Stacks lo
 
 Before running the automation script, ensure you have:
 
-### Required Tools
-
-- **Local Atlas**: Must be running before executing the script
-  - Typically runs on ports 8080, 8081, or 3000
-  - Verify it's running: `lsof -i :8080` (or your Atlas port)
-
-- **doormat CLI**: HashiCorp's credential management tool
-  - Installation: https://github.com/hashicorp/doormat
-  - Verify: `doormat --version`
-
-- **Terraform CLI**: With Stacks support
-  - Installation: https://www.terraform.io/downloads
-  - Verify: `terraform version`
-  - Required version: >= 1.2
-
 ### Required Setup
 
 **IMPORTANT: You must create a variable set before running this script!**
@@ -43,10 +28,6 @@ Before running the automation script, ensure you have:
    - Create a new variable set (you can name it anything you like)
    - Note the variable set ID (format: `varset-xxxxx`)
    - The script will populate this variable set with AWS credentials
-
-2. **Update your deployment configuration:**
-   - In `deployments.tfdeploy.hcl`, specify the variable set ID in each deployment's inputs
-   - Example: `varset_id = "varset-qgLRwjGnGUzjkLWa"`
 
 ### Required Information
 
@@ -76,11 +57,6 @@ Gather the following information before running the script:
    ```bash
    cp .stack-setup.conf.example .stack-setup.conf
    # Edit .stack-setup.conf with your values
-   ```
-
-4. **Add to .gitignore (important!):**
-   ```bash
-   echo ".stack-setup.conf" >> .gitignore
    ```
 
 ## Usage
@@ -242,12 +218,12 @@ The script executes the following steps in order:
 # - Local Atlas running
 
 ./setup-stack.sh \
-  --aws-account aws_neha.elizabeth.thomas_test \
+  --aws-account aws_neha_test \
   --hostname tfcdev-440d497a.ngrok.app \
   --organization learn-terraform \
   --project stacks-test \
   --stack stack-1 \
-  --varset-id varset-qgLRwjGnGUzjkLWa
+  --varset-id varset-xxxxxxxx
 ```
 
 ### Example 3: Using Configuration File
