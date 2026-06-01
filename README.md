@@ -25,7 +25,7 @@ Before running the automation script, ensure you have:
 1. **Create a Variable Set in Terraform Cloud/Enterprise:**
    - Navigate to your organization settings
    - Go to Variable Sets
-   - Create a new variable set (you can name it anything you like)
+   - Create a new variable set (Notes: you must name it AwsCreds)
    - Note the variable set ID (format: `varset-xxxxx`)
    - The script will populate this variable set with AWS credentials
 
