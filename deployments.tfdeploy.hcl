@@ -1,5 +1,5 @@
 store "varset" "tokens" {
-  id       = var.varset_id
+  name       = "AwsCreds"
   category = "env"
 }
 
