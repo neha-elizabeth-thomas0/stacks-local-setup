@@ -1,0 +1,40 @@
+# Terraform Files
+.terraform/
+.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Sensitive Configuration Files
+.stack-setup.conf
+*.pem
+*.key
+*.crt
+
+# Environment Variables
+.env
+.env.local
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+
+# Backup Files
+*.backup
+*.bak
+
+# Made with Bob
