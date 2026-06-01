@@ -1,0 +1,40 @@
+# Terraform Stacks Local Setup Configuration File
+# 
+# Copy this file to .stack-setup.conf and update with your values
+# Command-line arguments will override these settings
+#
+# Usage: ./setup-stack.sh --config .stack-setup.conf
+
+# AWS Account Configuration
+# The AWS account name used with doormat
+# Example: aws_neha.elizabeth.thomas_test
+AWS_ACCOUNT="aws_your_account_name_here"
+
+# Terraform Cloud/Enterprise Hostname
+# Your local TFC hostname (typically an ngrok URL for local development)
+# Example: tfcdev-440d497a.ngrok.app
+TFC_HOSTNAME="tfcdev-xxxxx.ngrok.app"
+
+# Terraform Organization
+# The organization name in Terraform Cloud/Enterprise
+ORGANIZATION="learn-terraform"
+
+# Project Name
+# The project name where the stack will be created
+PROJECT="stacks-test"
+
+# Stack Name
+# The name of the stack to create/update
+STACK_NAME="stack-1"
+
+# Variable Set ID (required)
+# The ID of your existing variable set containing AWS credentials
+# You must create this variable set in Terraform Cloud/Enterprise first
+# Example: varset-qgLRwjGnGUzjkLWa
+VARSET_ID="varset-xxxxx"
+
+# Notes:
+# - Lines starting with # are comments
+# - Remove quotes if values contain spaces
+# - Do not commit this file with sensitive information to version control
+# - Add .stack-setup.conf to your .gitignore file
