@@ -399,6 +399,41 @@ create_stack() {
 # Main Setup Functions
 ################################################################################
 
+terraform_login() {
+    log_step "Authenticating with Terraform Cloud..."
+    
+    if [[ "$DRY_RUN" == true ]]; then
+        log_info "[DRY RUN] Would check credentials and run: terraform login $TFC_HOSTNAME"
+        return 0
+    fi
+    
+    # Check if already logged in by looking for credentials file
+    local credentials_file="$HOME/.terraform.d/credentials.tfrc.json"
+    local already_logged_in=false
+    
+    if [[ -f "$credentials_file" ]]; then
+        log_verbose "Checking existing credentials in $credentials_file"
+        # Check if the hostname exists in the credentials file
+        if grep -q "\"$TFC_HOSTNAME\"" "$credentials_file" 2>/dev/null; then
+            log_success "Already authenticated with $TFC_HOSTNAME"
+            already_logged_in=true
+        fi
+    fi
+    
+    if [[ "$already_logged_in" == false ]]; then
+        log_info "Running terraform login $TFC_HOSTNAME..."
+        log_verbose "Hostname: $TFC_HOSTNAME"
+        
+        if terraform login "$TFC_HOSTNAME"; then
+            log_success "Terraform authentication successful"
+        else
+            log_error "Failed to authenticate with Terraform Cloud"
+            log_error "Please ensure the hostname is correct and try again"
+            exit 1
+        fi
+    fi
+}
+
 doormat_login() {
     log_step "Authenticating with doormat..."
     
@@ -685,6 +720,7 @@ main() {
     fi
     
     # Execute setup steps
+    terraform_login
     doormat_login
     push_aws_credentials
     export_hostname
